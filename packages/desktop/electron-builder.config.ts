@@ -42,7 +42,7 @@ const APP_IDS = {
 } as const
 
 const getBase = (appId: string): Configuration => ({
-  artifactName: "opencode-desktop-${os}-${arch}.${ext}",
+  artifactName: "arena-desktop-${os}-${arch}.${ext}",
   directories: {
     output: "dist",
     buildResources: "resources",
@@ -106,7 +106,7 @@ const getBase = (appId: string): Configuration => ({
   linux: {
     icon: `resources/icons`,
     category: "Development",
-    executableName: appId,
+    executableName: "arena",
     desktop: {
       entry: {
         // Match the installed .desktop file and hicolor icon basename so
@@ -146,12 +146,12 @@ function getConfig() {
     case "prod": {
       return {
         ...base,
-        appId,
-        productName: "OpenCode",
-        protocols: { name: "OpenCode", schemes: ["opencode"] },
-        publish: { provider: "github", owner: "anomalyco", repo: "opencode", channel: "latest" },
+        appId: "com.ingoga.arena",
+        productName: "Ingoga Arena",
+        protocols: { name: "Ingoga Arena", schemes: ["arena"] },
+        publish: { provider: "github", owner: "ingoga", repo: "arena", channel: "latest" },
         deb: { fpm: [metainfoFpm(appId), legacyDesktopEntryFpm] },
-        rpm: { packageName: "opencode", fpm: [metainfoFpm(appId), legacyDesktopEntryFpm] },
+        rpm: { packageName: "arena", fpm: [metainfoFpm(appId), legacyDesktopEntryFpm] },
       }
     }
   }
